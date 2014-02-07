@@ -1,0 +1,20 @@
+Load_region 0x400000 0x20000
+{
+    ; Flash 128K
+    Vector_region 0x400000
+    {
+        startup_sam3s.o (RESET, +FIRST)
+    }
+	ROM_1 +0
+	{
+		.ANY (+RO)
+		; SRAM0 32K
+	}
+
+	Relocate_region 0x20000100 (0x8000-0x100)
+	{
+		.ANY (+RW +ZI)
+	}
+}
+;.\OBJ\SFB_Firmware.axf: Error: L6788E: Scatter-loading of execution region ROM_1 to [0x00404000,0x00418628) 
+;will cause the contents of execution region ROM_1 at [0x004000cc,0x004146f4) to be corrupted at run-time.

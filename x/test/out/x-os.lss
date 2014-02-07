@@ -1,0 +1,119 @@
+
+out/x-os.elf:     file format elf32-littlearm
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000160  00400000  00400000  00008000  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .bss          0000001c  20000000  20000000  00010000  2**2
+                  ALLOC
+  2 .stack        00002004  2000001c  2000001c  00010000  2**0
+                  ALLOC
+  3 .ARM.attributes 00000031  00000000  00000000  00008160  2**0
+                  CONTENTS, READONLY
+
+Disassembly of section .text:
+
+00400000 <deregister_tm_clones>:
+  400000:	e92d4008 	push	{r3, lr}
+  400004:	e59f002c 	ldr	r0, [pc, #44]	; 400038 <deregister_tm_clones+0x38>
+  400008:	e59f302c 	ldr	r3, [pc, #44]	; 40003c <deregister_tm_clones+0x3c>
+  40000c:	e0603003 	rsb	r3, r0, r3
+  400010:	e3530006 	cmp	r3, #6
+  400014:	8a000001 	bhi	400020 <deregister_tm_clones+0x20>
+  400018:	e8bd4008 	pop	{r3, lr}
+  40001c:	e12fff1e 	bx	lr
+  400020:	e59f3018 	ldr	r3, [pc, #24]	; 400040 <deregister_tm_clones+0x40>
+  400024:	e3530000 	cmp	r3, #0
+  400028:	0afffffa 	beq	400018 <deregister_tm_clones+0x18>
+  40002c:	e1a0e00f 	mov	lr, pc
+  400030:	e12fff13 	bx	r3
+  400034:	eafffff7 	b	400018 <deregister_tm_clones+0x18>
+  400038:	00400160 	.word	0x00400160
+  40003c:	00400163 	.word	0x00400163
+  400040:	00000000 	.word	0x00000000
+
+00400044 <register_tm_clones>:
+  400044:	e92d4008 	push	{r3, lr}
+  400048:	e59f0034 	ldr	r0, [pc, #52]	; 400084 <register_tm_clones+0x40>
+  40004c:	e59f3034 	ldr	r3, [pc, #52]	; 400088 <register_tm_clones+0x44>
+  400050:	e0603003 	rsb	r3, r0, r3
+  400054:	e1a03143 	asr	r3, r3, #2
+  400058:	e0833fa3 	add	r3, r3, r3, lsr #31
+  40005c:	e1b010c3 	asrs	r1, r3, #1
+  400060:	1a000001 	bne	40006c <register_tm_clones+0x28>
+  400064:	e8bd4008 	pop	{r3, lr}
+  400068:	e12fff1e 	bx	lr
+  40006c:	e59f2018 	ldr	r2, [pc, #24]	; 40008c <register_tm_clones+0x48>
+  400070:	e3520000 	cmp	r2, #0
+  400074:	0afffffa 	beq	400064 <register_tm_clones+0x20>
+  400078:	e1a0e00f 	mov	lr, pc
+  40007c:	e12fff12 	bx	r2
+  400080:	eafffff7 	b	400064 <register_tm_clones+0x20>
+  400084:	00400160 	.word	0x00400160
+  400088:	00400160 	.word	0x00400160
+  40008c:	00000000 	.word	0x00000000
+
+00400090 <__do_global_dtors_aux>:
+  400090:	e92d4010 	push	{r4, lr}
+  400094:	e59f402c 	ldr	r4, [pc, #44]	; 4000c8 <__do_global_dtors_aux+0x38>
+  400098:	e5d43000 	ldrb	r3, [r4]
+  40009c:	e3530000 	cmp	r3, #0
+  4000a0:	1a000006 	bne	4000c0 <__do_global_dtors_aux+0x30>
+  4000a4:	ebffffd5 	bl	400000 <deregister_tm_clones>
+  4000a8:	e59f301c 	ldr	r3, [pc, #28]	; 4000cc <__do_global_dtors_aux+0x3c>
+  4000ac:	e3530000 	cmp	r3, #0
+  4000b0:	159f0018 	ldrne	r0, [pc, #24]	; 4000d0 <__do_global_dtors_aux+0x40>
+  4000b4:	1320f000 	nopne	{0}
+  4000b8:	e3a03001 	mov	r3, #1
+  4000bc:	e5c43000 	strb	r3, [r4]
+  4000c0:	e8bd4010 	pop	{r4, lr}
+  4000c4:	e12fff1e 	bx	lr
+  4000c8:	20000000 	.word	0x20000000
+  4000cc:	00000000 	.word	0x00000000
+  4000d0:	00400160 	.word	0x00400160
+
+004000d4 <frame_dummy>:
+  4000d4:	e92d4008 	push	{r3, lr}
+  4000d8:	e59f3034 	ldr	r3, [pc, #52]	; 400114 <frame_dummy+0x40>
+  4000dc:	e3530000 	cmp	r3, #0
+  4000e0:	159f0030 	ldrne	r0, [pc, #48]	; 400118 <frame_dummy+0x44>
+  4000e4:	159f1030 	ldrne	r1, [pc, #48]	; 40011c <frame_dummy+0x48>
+  4000e8:	1320f000 	nopne	{0}
+  4000ec:	e59f002c 	ldr	r0, [pc, #44]	; 400120 <frame_dummy+0x4c>
+  4000f0:	e5903000 	ldr	r3, [r0]
+  4000f4:	e3530000 	cmp	r3, #0
+  4000f8:	0a000003 	beq	40010c <frame_dummy+0x38>
+  4000fc:	e59f3020 	ldr	r3, [pc, #32]	; 400124 <frame_dummy+0x50>
+  400100:	e3530000 	cmp	r3, #0
+  400104:	11a0e00f 	movne	lr, pc
+  400108:	112fff13 	bxne	r3
+  40010c:	e8bd4008 	pop	{r3, lr}
+  400110:	eaffffcb 	b	400044 <register_tm_clones>
+  400114:	00000000 	.word	0x00000000
+  400118:	00400160 	.word	0x00400160
+  40011c:	20000004 	.word	0x20000004
+  400120:	00400160 	.word	0x00400160
+  400124:	00000000 	.word	0x00000000
+
+00400128 <_init>:
+  400128:	e1a0c00d 	mov	ip, sp
+  40012c:	e92ddff8 	push	{r3, r4, r5, r6, r7, r8, r9, sl, fp, ip, lr, pc}
+  400130:	e24cb004 	sub	fp, ip, #4
+  400134:	e24bd028 	sub	sp, fp, #40	; 0x28
+  400138:	e89d6ff0 	ldm	sp, {r4, r5, r6, r7, r8, r9, sl, fp, sp, lr}
+  40013c:	e12fff1e 	bx	lr
+
+00400140 <__init_array_start>:
+  400140:	004000d4 	.word	0x004000d4
+
+00400144 <_fini>:
+  400144:	e1a0c00d 	mov	ip, sp
+  400148:	e92ddff8 	push	{r3, r4, r5, r6, r7, r8, r9, sl, fp, ip, lr, pc}
+  40014c:	e24cb004 	sub	fp, ip, #4
+  400150:	e24bd028 	sub	sp, fp, #40	; 0x28
+  400154:	e89d6ff0 	ldm	sp, {r4, r5, r6, r7, r8, r9, sl, fp, sp, lr}
+  400158:	e12fff1e 	bx	lr
+
+0040015c <__fini_array_start>:
+  40015c:	00400090 	.word	0x00400090
